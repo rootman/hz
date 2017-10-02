@@ -1,11 +1,13 @@
 import items from '../data'
 import CardList from './CardList.vue'
+import areaData from '../areas.json'
 
 export default {
     data() {
         return {
             items,
             query: '',
+            areaData,
         }
     },
     computed: {
@@ -17,6 +19,14 @@ export default {
         },
         mietrechtItems() {
             return this.items.filter(item => this.matchTitle('Mietrecht', item) || this.matchTag('Mietrecht', item))
+        },
+        areas() {
+            return this.areaData.map(area => {
+                return {
+                    ...area,
+                    items: this.items.filter(item => this.matchTags(area.tags, item))
+                }
+            })
         }
     },
     methods: {
@@ -25,7 +35,10 @@ export default {
         },
         matchTag(query, item) {
             return item.tags.filter(tag => tag.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1).length > 0
-        }
+        },
+        matchTags(tags, item) {
+            return 1;
+        },
     },
     components: {
         CardList

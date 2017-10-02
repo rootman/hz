@@ -10,6 +10,7 @@
 
 // generic
 @import '../../../node_modules/normalize-scss/sass/normalize/import-now';
+@import 'generic/reset';
 @import 'generic/boxsizing';
 @import 'generic/smoothing';
 
@@ -24,6 +25,7 @@
 @import 'components/tag-list';
 @import 'components/tag';
 @import 'components/grid';
+@import 'components/section';
 @import 'components/search-box';
 
 //transitions

@@ -3,6 +3,7 @@
   border-radius: 2px;
   padding: 20px;
   display: flex;
+  color: #333;
 
   @include materialshadow(1);
 }
