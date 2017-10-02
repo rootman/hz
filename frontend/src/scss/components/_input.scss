@@ -1,0 +1,15 @@
+.input {
+  width: 100%;
+  padding: 15px 30px;
+  outline: none;
+  border: 1px solid #ddd;
+  font-family: inherit;
+
+  @include placeholder {
+    color: #aaa;
+  }
+}
+
+.input--with-icon {
+  padding-left: 45px;
+}

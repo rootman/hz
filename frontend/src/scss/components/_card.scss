@@ -1,0 +1,17 @@
+.card {
+  background: #fff;
+  border-radius: 2px;
+  padding: 20px;
+  display: flex;
+
+  @include materialshadow(1);
+}
+
+.card__content {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+
+.card__tags {
+
+}
