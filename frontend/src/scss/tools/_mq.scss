@@ -1,0 +1,23 @@
+@mixin mq-tablet {
+  @media (min-width: $mq-tablet) {
+    @content;
+  }
+}
+
+@mixin mq-tablet-down {
+  @media (max-width: $mq-tablet - 1px) {
+    @content;
+  }
+}
+
+@mixin mq-desktop {
+  @media (min-width: $mq-desktop) {
+    @content;
+  }
+}
+
+@mixin mq-desktop-down {
+  @media (max-width: $mq-desktop - 1px) {
+    @content;
+  }
+}

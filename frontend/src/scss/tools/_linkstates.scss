@@ -1,0 +1,5 @@
+@mixin linkstates {
+  &, &:link, &:visited, &:hover, &:focus, &:active {
+    @content;
+  }
+}

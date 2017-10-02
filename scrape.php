@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * @param $urls
  * @return array
