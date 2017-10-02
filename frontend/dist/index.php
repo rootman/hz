@@ -10,10 +10,8 @@
 </head>
 <body class="body">
 
-<div class="app" id="app">
-
-
-
+<div id="app">
+    <main-app></main-app>
 </div>
 
 <script src="main.js"></script>

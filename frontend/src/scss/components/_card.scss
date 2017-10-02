@@ -1,0 +1,16 @@
+.card {
+  background: #fff;
+  border-radius: 2px;
+  padding: 20px;
+  display: flex;
+
+  @include materialshadow(1);
+}
+
+.card__content {
+
+}
+
+.card__tags {
+
+}

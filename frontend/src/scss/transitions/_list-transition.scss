@@ -1,0 +1,6 @@
+.list-transition-enter, .list-transition-leave-to {
+  opacity: 0;
+}
+.list-transition-leave-active {
+  position: absolute;
+}

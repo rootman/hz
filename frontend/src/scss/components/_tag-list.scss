@@ -1,0 +1,10 @@
+.tag-list {
+  list-style-type: none;
+  margin: -5px 0 0 -5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-list__item {
+  padding: 5px 0 0 5px;
+}
