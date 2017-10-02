@@ -2,26 +2,39 @@
     <div class="main-app">
         <div class="container">
 
+            <h2>Alle Urteile</h2>
+
             <div class="search-box">
-                <input type="text" v-model="query" class="input" placeholder="Search for Tags...">
+                <i class="material-icons search-box__icon">search</i>
+                <input type="text" v-model="query" class="input input--with-icon" placeholder="Search...">
             </div>
 
-            <transition-group tag="ul" class="card-list" name="list-transition">
-                <li class="card-list__item" v-for="item in filteredItems" :key="item.title">
-                    <div class="card">
-                        <div class="card__content">
-                            {{item.title}}
-                        </div>
-                        <div class="card__tags">
-                            <ul class="tag-list">
-                                <li class="tag-list__item" v-for="tag in item.tags">
-                                    <div class="tag">{{tag}}</div>
-                                </li>
-                            </ul>
+            <card-list :items="filteredItems" v-if="filteredItems.length > 0"></card-list>
+            <div class="no-results" v-else>
+                Sadly there are no results for your search.
+            </div>
+
+            <div class="grid">
+                <div class="grid__item">
+                    <h2>Arbeitsrecht</h2>
+                    <div>
+                        <card-list :items="arbeitsrechtItems" v-if="arbeitsrechtItems.length > 0"></card-list>
+                        <div class="no-results" v-else>
+                            Sadly there are no results for your search.
                         </div>
                     </div>
-                </li>
-            </transition-group>
+                </div>
+
+                <div class="grid__item">
+                    <h2>Mietrecht</h2>
+                    <div>
+                        <card-list :items="mietrechtItems" v-if="mietrechtItems.length > 0"></card-list>
+                        <div class="no-results" v-else>
+                            Sadly there are no results for your search.
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

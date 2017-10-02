@@ -2,9 +2,11 @@
   list-style-type: none;
   margin: -15px 0 0 0;
   padding: 0;
+  position: relative;
 }
 
 .card-list__item {
+  width: 100%;
   padding: 15px 0 0 0;
   transition: all .25s;
 }
