@@ -41,11 +41,12 @@ def get_html( url ):
 
 def find_articles( string ):
     pattern1 = r"Art\.\ \d+\ [A-Z]{2,}"
-    pattern2 = r"Art\.\ \d+\ Abs\.\ \d+\ [A-Z]{2,}"
-    pattern3 = r"Art\.\ \d+\ Abs\.\ \d+\ und\ \d+\ [A-Z]{2,}"
-    pattern4 = r"art\.\ \d+\ [A-Z]{2,}"
-    pattern5 = r"art\.\ \d+\ abs\.\ \d+\ [A-Z]{2,}"
-    pattern6 = r"art\.\ \d+\ abs\.\ \d+\ und\ \d+\ [A-Z]{2,}"
+    pattern2 = r"Art\.\ \d+\ ff\.\ [A-Z]{2,}"
+    pattern3 = r"Art\.\ \d+\ Abs\.\ \d+\ [A-Z]{2,}"
+    pattern4 = r"Art\.\ \d+\ Abs\.\ \d+\ und\ \d+\ [A-Z]{2,}"
+    pattern5 = r"art\.\ \d+\ [A-Z]{2,}"
+    pattern6 = r"art\.\ \d+\ abs\.\ \d+\ [A-Z]{2,}"
+    pattern7 = r"art\.\ \d+\ abs\.\ \d+\ und\ \d+\ [A-Z]{2,}"
     #pattern4 = r"Art\.\ \d+\ Abs\.\ \d+-\d+\ [A-Z]{2,}"
     # Art. 334a
 
@@ -55,10 +56,11 @@ def find_articles( string ):
     match4 = re.findall(pattern4, string)
     match5 = re.findall(pattern5, string)
     match6 = re.findall(pattern6, string)
+    match7 = re.findall(pattern7, string)
     #match4 = re.findall(pattern4, string)
 
     # Concenate to 1 list
-    articleList = match1 + match2 + match3 + match4 + match5 + match6
+    articleList = match1 + match2 + match3 + match4 + match5 + match6 + match7
 
     # Remove duplicates
     articleList = list(set(articleList))
@@ -77,7 +79,7 @@ def get_tags_for_articles( articleList, tagDict ):
 
         pattern1 = r"\ Abs\.\ \d+\ "
         pattern2 = r"\ Abs\.\ \d+\ und\ \d+\ "
-        pattern3 = r"\ ff.\ "
+        pattern3 = r"\ ff\.\ "
         pattern4 = r"-\d+\ "
 
         sub_article = re.sub(pattern2, " ", sub_article)
@@ -163,6 +165,8 @@ def main():
         #
 
         documents.append(document)
+
+        print('.')
 
     # Write to json
     save_to_json( documents, OUT )
