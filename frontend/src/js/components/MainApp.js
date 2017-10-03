@@ -28,7 +28,7 @@ export default {
             return this.items.filter(item => item.hidden !== true)
         },
         filteredItems() {
-            return this.visibleItems.filter(item => this.matchTitle(this.query, item) || this.matchTag(this.query, item))
+            return this.visibleItems.filter(item => this.matchTitle(this.query, item) || this.matchId(this.query, item) || this.matchTag(this.query, item))
         },
         areas() {
             return this.areaData.map(area => {
@@ -42,6 +42,9 @@ export default {
     methods: {
         matchTitle(query, item) {
             return item.title.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1
+        },
+        matchId(query, item) {
+            return item.id.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1
         },
         matchTag(query, item) {
             return item.tags.filter(tag => tag.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1).length > 0
