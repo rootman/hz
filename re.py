@@ -14,17 +14,19 @@ string = "Hallo mein name ist Art. 72 BGG, Art. 72 BGG, Art. 62 Abs. 3 BGG, Art.
 # Art. 6 Ziff. 1 EMRK
 
 pattern1 = r"Art\.\ \d+\ [A-Z]{2,}"
-pattern2 = r"Art\.\ \d+\ Abs\.\ \d+\ [A-Z]{2,}"
-pattern3 = r"Art\.\ \d+\ Abs\.\ \d+\ und\ \d+\ [A-Z]{2,}"
+pattern2 = r"Art\.\ \d+\ ff\.\ [A-Z]{2,}"
+pattern3 = r"Art\.\ \d+\ Abs\.\ \d+\ [A-Z]{2,}"
+pattern4 = r"Art\.\ \d+\ Abs\.\ \d+\ und\ \d+\ [A-Z]{2,}"
 #pattern4 = r"Art\.\ \d+\ Abs\.\ \d+-\d+\ [A-Z]{2,}"
 
 matches1 = re.findall(pattern1, string)
 matches2 = re.findall(pattern2, string)
 matches3 = re.findall(pattern3, string)
-#matches4 = re.findall(pattern4, string)
+matches4 = re.findall(pattern4, string)
 
 #allList = list(itertools.chain(matches1, matches2, matches3))
-allList = matches1 + matches2 + matches3
+#allList = matches1 + matches3 + matches4
+allList = matches1 + matches2 + matches3 + matches4
 allList = list(set(allList))
 
 print allList

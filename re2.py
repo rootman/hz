@@ -5,7 +5,7 @@ string = "Hallo mein name ist Art. 72 BGG, Art. 72 BGG, Art. 62 Abs. 3 BGG, Art.
 
 pattern1 = r"\ Abs\.\ \d+\ "
 pattern2 = r"\ Abs\.\ \d+\ und\ \d+\ "
-pattern3 = r"\ ff.\ "
+pattern3 = r"\ ff\.\ "
 pattern4 = r"-\d+\ "
 
 string = re.sub(pattern2, " ", string)

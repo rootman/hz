@@ -108,7 +108,7 @@ def get_tags_for_articles( articleList, tagDict ):
     return tags
 
 
-def get_main_from_url( link ):
+def get_and_parse_site( link ):
 
     # Get html from one url
     #document['html'] = get_html(link)
@@ -117,6 +117,11 @@ def get_main_from_url( link ):
     # Load to beautifulsoup
     #parsed_html = BeautifulSoup(document['html'], 'html.parser')
     parsed_html = BeautifulSoup(string, 'html.parser')
+
+    return parsed_html
+
+
+def get_main( parsed_html ):
 
     # Get main class
     maindiv = parsed_html.findAll("div", { "class": "main"})
@@ -127,10 +132,62 @@ def get_main_from_url( link ):
     return mainstring
 
 
+def get_date(link):
+    pattern = r"[0-9]{2}-[0-9]{2}-[0-9]{4}"
+    search = re.search( pattern, link )
+    return search.group(0)
+
+
+def get_id( parsed_html ):
+
+    # Find candidates
+    candidates = []
+    for element in parsed_html.findAll("div", { "class": "para"}):
+        try:
+            for bold in element.find("b"):
+
+                candidates.append(bold)
+        except:
+            pass
+
+    # ID pattern
+    pattern = re.compile("[A-Z0-9]{2}_[0-9]{3}/[0-9]{4}")
+
+    ids = []
+    for candidate in candidates:
+        match =  pattern.match(candidate)
+        if match is not None:
+            ids.append(candidate)
+
+    #print ids[0]
+    return ids[0]
+
+
+def get_gegenstand( parsed_html ):
+
+    gegenstand = False
+
+    # Find identifier
+    identifier = parsed_html.find('div', text=re.compile(r'Gegenstand\s*'))
+
+    # If no German was found
+    if identifier is None:
+
+        identifier = parsed_html.find('div', text=re.compile(r'Objet\s*'))
+
+    # If German or French was found
+    if identifier is not None:
+
+        next_div = identifier.find_next_sibling('div')
+
+        gegenstand = next_div.contents[0].strip().strip(',')
+
+    return gegenstand or 'N/A'
+
+
 def save_to_json( document, outfile ):
     with open(outfile, 'wb') as f:
         json.dump(document, f)
-
 
 
 def main():
@@ -146,20 +203,38 @@ def main():
 
     for link in link_list:
 
+        print link
+
         # Document object
         document = {}
 
         # Store url
         document['url'] = link
 
+        # Store date
+        document['date'] = get_date(link)
+
+        # Parse site
+        parsed_html = get_and_parse_site(link)
+
+        #print parsed_html
+
         # Get main string from url
-        main_string = get_main_from_url(link)
+        main_string = get_main(parsed_html)
 
         # Get mentioned articles articles
         document['articles'] = find_articles(main_string)
 
         # Get tags for articles
         document['tags'] = get_tags_for_articles( document['articles'], art_tags )
+
+        # Get id
+        document['id'] = get_id(parsed_html)
+
+        # Get Gegenstand
+        document['gegenstand'] = get_gegenstand(parsed_html)
+
+        print document['gegenstand']
 
         # TODO: Write document date
         #
@@ -170,7 +245,6 @@ def main():
 
     # Write to json
     save_to_json( documents, OUT )
-
 
 
     # example = "Hallo mein name ist Art. 366 Abs. 4 OR hallo"
