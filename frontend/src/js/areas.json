@@ -36,9 +36,7 @@
       "Art. 214 OR",
       "Art. 215 OR",
       "Kaufvertrag",
-      "Rechte und Pflichten",
       "Nutzen und Gefahr",
-      "Vorbehalt",
       "kantonale Gesetzgebung",
       "Farniskauf",
       "Verpflichtungen des Verkäufers",
@@ -47,7 +45,6 @@
       "Transportkosten",
       "Verzug in der Übergabe",
       "Rücktritt im kaufmännischen Verkehr",
-      "Schadenersatzpflicht",
       "Schadenberechnung",
       "Gewährleistung des veräusserten Rechtes",
       "Verpflichtung zur Gewährleistung",
@@ -81,8 +78,6 @@
       "Art. 371 OR",
       "Werkvertrag",
       "Pflichten des Unternehmers",
-      "Betreffend den Stoff",
-      "Stoff",
       "Werkstoff",
       "Rechtzeitige Vornahme der Arbeit",
       "vertragsgemässe Ausführung der Arbeit",
@@ -189,10 +184,7 @@
       "Art. 337d OR",
       "Arbeitsvertrag",
       "Einzelarbeitsvertrag",
-      "Entstehung",
       "Pflichten des Arbeitgebers",
-      "Lohn",
-      "Höhe Lohn",
       "Anteil am Geschäftsergebnis",
       "Pflichten des Arbeitnehmers",
       "Persönliche Arbeitspflicht",
@@ -206,21 +198,38 @@
       "Überstunden",
       "Befolgung von Anordnungen und Weisungen",
       "Anordnungen und Weisungen",
-      "Anordnungen",
       "Weisungen",
       "Haftung des Arbeitnehmers",
-      "Haftung",
-      "Lohn",
       "Höhe Lohn",
       "Anteil am Geschäftsergebnis",
-      "Provision",
-      "Entstehung",
-      "Abrechnung",
       "Gratifikation"
     ]
   },
   {
-    "name": "Erbrecht",
-    "tags": []
+    "name": "Mietrecht",
+    "tags": [
+      "Mietvertrag",
+      "Mietrecht",
+      "Miete"
+    ]
+  },
+  {
+    "name": "Gesellschaftsrecht",
+    "tags": [
+      "Gesellschaftsrecht",
+      "Konkurs",
+      "Eintragung in das Handelsregister"
+    ]
+  },
+  {
+    "name": "Strafrecht",
+    "tags": [
+      "Betrug",
+      "Nötigung",
+      "Erpressung",
+      "Strafanzeige",
+      "Drohung",
+      "Straftat"
+    ]
   }
 ]
