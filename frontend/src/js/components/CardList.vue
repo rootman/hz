@@ -5,8 +5,17 @@
                 <div class="card__header">
                     <action-list :item="item"></action-list>
                 </div>
+                <div class="card__departments">
+                    <ul class="department-list">
+                        <li class="department-list__item" v-for="department in departments">
+                            <div class="department" :class="{'department--active': item.departments.indexOf(department) !== -1}" @click="toggleDepartment(item, department)">
+                                {{department.name}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="card__comment">
-                    <textarea class="card__commentarea" placeholder="Kommentar, Anweisung, ..." v-model="item.comment"></textarea>
+                    <textarea class="card__commentarea" placeholder="Zusammenfassung, Kommentar, Anweisung, ..." v-model="item.comment"></textarea>
                 </div>
                 <div class="card__body">
                     <div class="card__content">

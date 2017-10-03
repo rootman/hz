@@ -9,6 +9,8 @@ const items = itemData.map(item => ({
     hidden: false,
     comment: null,
     approved: false,
+    departments: [],
+    title: item.title || item.url
 }))
 
 export default {

@@ -1,0 +1,7 @@
+.department-list {
+  @extend .tag-list;
+}
+
+.department-list__item {
+  @extend .tag-list__item;
+}

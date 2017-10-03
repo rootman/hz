@@ -1,0 +1,13 @@
+.department {
+  display: inline-flex;
+  padding: 5px 15px;
+  border-radius: 2px;
+  background: #efefef;
+  cursor: pointer;
+  user-select: none;
+}
+
+.department--active {
+  background: #00B8D4;
+  color: #fff;
+}
