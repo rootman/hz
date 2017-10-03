@@ -25,7 +25,7 @@
 
                 <card-list :items="filteredItems" v-if="filteredItems.length > 0"></card-list>
                 <div class="no-results" v-else>
-                    Sadly there are no results for your search.
+                    Leider gibt es für Ihre Suche keine Ergebnisse.
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <div>
                             <card-list :items="area.items" v-if="area.items.length > 0"></card-list>
                             <div class="no-results" v-else>
-                                Sadly there are no results for your search.
+                                Heute ist ein schöner Tag, es gibt nichts für Sie zu tun!
                             </div>
                         </div>
                     </div>

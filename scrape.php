@@ -55,7 +55,9 @@ for($i = 0; $i < 2; $i++) {
 */
 
 $result = scrapeByDate(strtotime(20170919));
+$urls = array_merge($urls, extractUrls($result));
 
+$result = scrapeByDate(strtotime(20171002));
 $urls = array_merge($urls, extractUrls($result));
 
 $relevant =
