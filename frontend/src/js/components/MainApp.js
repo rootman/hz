@@ -1,6 +1,15 @@
-import items from '../data'
+//import items from '../data'
+import itemData from '../../../../documents.json'
 import CardList from './CardList.vue'
 import areaData from '../areas.json'
+import R from 'ramda'
+
+const items = itemData.map(item => ({
+    ...item,
+    hidden: false,
+    comment: null,
+    approved: false,
+}))
 
 export default {
     data() {
@@ -11,20 +20,17 @@ export default {
         }
     },
     computed: {
+        visibleItems() {
+            return this.items.filter(item => item.hidden !== true)
+        },
         filteredItems() {
-            return this.items.filter(item => this.matchTitle(this.query, item) || this.matchTag(this.query, item))
-        },
-        arbeitsrechtItems() {
-            return this.items.filter(item => this.matchTitle('Arbeitsrecht', item) || this.matchTag('Arbeitsrecht', item))
-        },
-        mietrechtItems() {
-            return this.items.filter(item => this.matchTitle('Mietrecht', item) || this.matchTag('Mietrecht', item))
+            return this.visibleItems.filter(item => this.matchTitle(this.query, item) || this.matchTag(this.query, item))
         },
         areas() {
             return this.areaData.map(area => {
                 return {
                     ...area,
-                    items: this.items.filter(item => this.matchTags(area.tags, item))
+                    items: this.visibleItems.filter(item => this.matchTags(area.tags, item.tags))
                 }
             })
         }
@@ -36,8 +42,11 @@ export default {
         matchTag(query, item) {
             return item.tags.filter(tag => tag.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1).length > 0
         },
-        matchTags(tags, item) {
-            return 1;
+        matchTags(areaTags, itemTags) {
+            return R.intersection(
+                areaTags.map(tag => tag.toLowerCase()),
+                itemTags.map(tag => tag.toLowerCase()),
+            ).length > 0
         },
     },
     components: {

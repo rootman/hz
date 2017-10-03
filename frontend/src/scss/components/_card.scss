@@ -1,18 +1,63 @@
 .card {
   background: #fff;
   border-radius: 2px;
-  padding: 20px;
-  display: flex;
   color: #333;
 
   @include materialshadow(1);
 }
 
+.card__header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: flex-end;
+  transition: all .25s ease-in-out;
+}
+
+.card__body {
+  padding: 15px;
+}
+
 .card__content {
-  flex: 0 0 60%;
-  max-width: 60%;
+
 }
 
 .card__tags {
+  padding-top: 15px;
+}
 
+.card__comment {
+  padding: 15px;
+}
+
+.card__commentarea {
+  border: none;
+  width: 100%;
+  height: 75px;
+  resize: vertical;
+  outline: none;
+}
+
+.card--approved .card__header {
+  background: #8BC34A;
+}
+
+.card--horizontal {
+  .card__body {
+    display: flex;
+  }
+
+  .card__content {
+    flex: 0 0 60%;
+    max-width: 60%;
+  }
+
+  .card__tags {
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding: 0 0 0 15px;
+  }
+}
+
+.section--search .card {
+  @extend .card--horizontal;
 }

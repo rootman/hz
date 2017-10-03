@@ -75,6 +75,8 @@ def get_tags_for_articles( articleList, tagDict ):
 
     for article in articleList:
 
+        print('.')
+
         sub_article = article
 
         pattern1 = r"\ Abs\.\ \d+\ "

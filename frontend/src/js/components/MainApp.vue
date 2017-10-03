@@ -1,12 +1,12 @@
 <template>
     <div class="main-app">
-        <div class="section">
+        <div class="section section--search">
             <div class="container">
                 <h1>Aktuelle Entscheide</h1>
 
                 <div class="search-box">
                     <i class="material-icons search-box__icon">search</i>
-                    <input type="text" v-model="query" class="input input--with-icon" placeholder="Search...">
+                    <input type="text" v-model="query" class="input input--with-icon" placeholder="Suchen...">
                 </div>
 
                 <card-list :items="filteredItems" v-if="filteredItems.length > 0"></card-list>
@@ -15,7 +15,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="section section--dark">
             <div class="container">
