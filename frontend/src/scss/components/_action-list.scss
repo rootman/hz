@@ -1,0 +1,22 @@
+.action-list {
+  display: flex;
+  margin: 0 0 0 -15px;
+  align-items: center;
+}
+
+.action-list__item {
+  padding: 0 0 0 15px;
+}
+
+.action-list__link {
+  text-decoration: none;
+  display: block;
+
+  @include linkstates {
+    color: #333;
+  }
+}
+
+.action-list__icon {
+  display: block;
+}

@@ -10,6 +10,7 @@
 
 // generic
 @import '../../../node_modules/normalize-scss/sass/normalize/import-now';
+@import 'generic/reset';
 @import 'generic/boxsizing';
 @import 'generic/smoothing';
 
@@ -17,6 +18,7 @@
 
 // components
 @import 'components/body';
+@import 'components/header';
 @import 'components/card';
 @import 'components/container';
 @import 'components/card-list';
@@ -24,7 +26,11 @@
 @import 'components/tag-list';
 @import 'components/tag';
 @import 'components/grid';
+@import 'components/section';
 @import 'components/search-box';
+@import 'components/action-list';
+@import 'components/department';
+@import 'components/department-list';
 
 //transitions
 @import 'transitions/list-transition';

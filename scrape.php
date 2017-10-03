@@ -45,8 +45,21 @@ function scrapeByDate($date)
     );
 }
 
-$result = scrapeByDate(time());
-$urls = extractUrls($result);
+$urls = [];
+/*
+for($i = 0; $i < 2; $i++) {
+    $result = scrapeByDate(time() - $i * 3600 * 24);
+
+    $urls = array_merge($urls, extractUrls($result));
+}
+*/
+
+$result = scrapeByDate(strtotime(20170919));
+$urls = array_merge($urls, extractUrls($result));
+
+$result = scrapeByDate(strtotime(20171002));
+$urls = array_merge($urls, extractUrls($result));
+
 $relevant =
     processUrls(
         filterDocumentUrls(
