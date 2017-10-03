@@ -12,11 +12,12 @@ client = MongoClient('mongodb://localhost:27017/')
 
 
 URLS = './urls.txt'
+WORDS = './tagwords.txt'
 TAGS = './keywords.csv'
 OUT = './documents.json'
 
 
-def open_linklist( path ):
+def open_list( path ):
     f = open(path, 'rb')
     file = f.read().split('\n')
     return file
@@ -37,6 +38,28 @@ def get_html( url ):
     site = urllib.urlopen(url)
     string = site.read()
     return string
+
+
+def get_and_parse_site( link ):
+    # Get html from one url
+    #document['html'] = get_html(link)
+    string = get_html(link)
+
+    # Load to beautifulsoup
+    #parsed_html = BeautifulSoup(document['html'], 'html.parser')
+    parsed_html = BeautifulSoup(string, 'html.parser')
+
+    return parsed_html
+
+
+def get_main( parsed_html ):
+    # Get main class
+    maindiv = parsed_html.findAll("div", { "class": "main"})
+
+    # Make string
+    mainstring = str(maindiv) #.lower()
+
+    return mainstring
 
 
 def find_articles( string ):
@@ -69,7 +92,6 @@ def find_articles( string ):
 
 
 def get_tags_for_articles( articleList, tagDict ):
-
     tags = []
     sub_articles = []
 
@@ -91,7 +113,6 @@ def get_tags_for_articles( articleList, tagDict ):
         sub_articles += [sub_article]
 
         sub_article = sub_article.lower()
-
         #print sub_article
 
         try:
@@ -102,34 +123,21 @@ def get_tags_for_articles( articleList, tagDict ):
             pass
 
     #tags = list(set(tags))
-
     tags += sub_articles
 
     return tags
 
 
-def get_and_parse_site( link ):
+def find_words_in_main( string, wordList ):
+    tag_words = []
+    lower_string = string.lower()
+    for word in wordList:
+        if word.lower() in lower_string:
+            tag_words.append(word)
 
-    # Get html from one url
-    #document['html'] = get_html(link)
-    string = get_html(link)
+    #print('found', tag_words)
 
-    # Load to beautifulsoup
-    #parsed_html = BeautifulSoup(document['html'], 'html.parser')
-    parsed_html = BeautifulSoup(string, 'html.parser')
-
-    return parsed_html
-
-
-def get_main( parsed_html ):
-
-    # Get main class
-    maindiv = parsed_html.findAll("div", { "class": "main"})
-
-    # Make string
-    mainstring = str(maindiv) #.lower()
-
-    return mainstring
+    return tag_words
 
 
 def get_date(link):
@@ -139,13 +147,11 @@ def get_date(link):
 
 
 def get_id( parsed_html ):
-
     # Find candidates
     candidates = []
     for element in parsed_html.findAll("div", { "class": "para"}):
         try:
             for bold in element.find("b"):
-
                 candidates.append(bold)
         except:
             pass
@@ -163,7 +169,6 @@ def get_id( parsed_html ):
     result = "N/A"
     try:
         result = ids[0].strip()
-
     except:
         pass
 
@@ -171,7 +176,6 @@ def get_id( parsed_html ):
 
 
 def get_gegenstand( parsed_html ):
-
     gegenstand = False
 
     # Find identifier
@@ -179,14 +183,11 @@ def get_gegenstand( parsed_html ):
 
     # If no German was found
     if identifier is None:
-
         identifier = parsed_html.find('div', text=re.compile(r'Objet\s*'))
 
-    # If German or French was found
+    # If either German or French was found
     if identifier is not None:
-
         next_div = identifier.find_next_sibling('div')
-
         gegenstand = next_div.contents[0].strip().strip(',')
 
     return gegenstand or 'N/A'
@@ -198,12 +199,14 @@ def save_to_json( document, outfile ):
 
 
 def main():
-
     # Get linklist
-    link_list = open_linklist(URLS)
+    link_list = open_list(URLS)
 
     # Get article-tags mapping
     art_tags = open_tags(TAGS)
+
+    # Open tagwords list
+    wordList = open_list(WORDS)
 
     # Define documents
     documents = []
@@ -223,7 +226,6 @@ def main():
 
         # Parse site
         parsed_html = get_and_parse_site(link)
-
         #print parsed_html
 
         # Get main string from url
@@ -235,16 +237,18 @@ def main():
         # Get tags for articles
         document['tags'] = get_tags_for_articles( document['articles'], art_tags )
 
+        # Add tags for words
+        document['tags'] += find_words_in_main( main_string, wordList )
+
+        # Deduplicate tags
+        document['tags'] = list(set(document['tags']))
+        print document['tags']
+
         # Get id
         document['id'] = get_id(parsed_html)
 
         # Get Gegenstand
         document['gegenstand'] = get_gegenstand(parsed_html)
-
-        print document['gegenstand']
-
-        # TODO: Write document date
-        #
 
         documents.append(document)
 
@@ -252,17 +256,6 @@ def main():
 
     # Write to json
     save_to_json( documents, OUT )
-
-
-    # example = "Hallo mein name ist Art. 366 Abs. 4 OR hallo"
-
-    # articles = find_articles(example)
-
-    # print articles
-
-    # tags = get_tags_for_articles( articles, art_tags )
-
-    # print tags
 
 
 main()
