@@ -3,16 +3,16 @@
         <li class="card-list__item" v-for="item in items" :key="item.title">
             <div class="card" :class="{'card--approved': item.approved}">
                 <div class="card__header">
+                    <div class="card__departments">
+                        <ul class="department-list">
+                            <li class="department-list__item" v-for="department in departments">
+                                <div class="department" :class="{'department--active': item.departments.indexOf(department) !== -1}" @click="toggleDepartment(item, department)">
+                                    {{department.name}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     <action-list :item="item"></action-list>
-                </div>
-                <div class="card__departments">
-                    <ul class="department-list">
-                        <li class="department-list__item" v-for="department in departments">
-                            <div class="department" :class="{'department--active': item.departments.indexOf(department) !== -1}" @click="toggleDepartment(item, department)">
-                                {{department.name}}
-                            </div>
-                        </li>
-                    </ul>
                 </div>
                 <div class="card__comment">
                     <textarea class="card__commentarea" placeholder="Zusammenfassung, Kommentar, Anweisung, ..." v-model="item.comment"></textarea>
