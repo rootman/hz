@@ -4,13 +4,15 @@ import CardList from './CardList.vue'
 import areaData from '../areas.json'
 import R from 'ramda'
 
+let uid = 1
 const items = itemData.map(item => ({
     ...item,
     hidden: false,
     comment: null,
     approved: false,
     departments: [],
-    title: item.title || item.url
+    title: item.gegenstand || item.url,
+    uid: uid++,
 }))
 
 export default {

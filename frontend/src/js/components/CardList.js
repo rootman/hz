@@ -2,7 +2,7 @@ import ActionList from './ActionList.vue'
 import departments from '../departments'
 
 export default {
-    props: ['items'],
+    props: ['items', 'tags'],
     data() {
         return {
             departments
