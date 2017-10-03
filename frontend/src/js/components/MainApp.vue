@@ -1,5 +1,19 @@
 <template>
     <div class="main-app">
+        <header class="header">
+            <div class="container">
+                <div class="header__wrapper">
+                    <div class="header__branding">
+                        <i class="material-icons header__brandingicon">gavel</i>
+                        iTrainee
+                    </div>
+                    <div class="header__slogan">
+                        Let software do the boring work...
+                    </div>
+                </div>
+            </div>
+        </header>
+
         <div class="section section--search">
             <div class="container">
                 <h1>Aktuelle Entscheide</h1>

@@ -1,0 +1,28 @@
+.header {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+
+  @include materialshadow(1);
+}
+
+.header__wrapper {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__branding {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.header__brandingicon {
+  font-size: inherit;
+  margin-right: 20px;
+}

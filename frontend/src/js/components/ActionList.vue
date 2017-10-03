@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="action-list__item">
-            <a href="#" class="action-list__link" target="_blank" title="Zur Webseite">
+            <a :href="item.url" class="action-list__link" target="_blank" title="Zur Webseite">
                 <i class="material-icons action-list__icon">link</i>
             </a>
         </div>
