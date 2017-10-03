@@ -4,13 +4,15 @@ import CardList from './CardList.vue'
 import areaData from '../areas.json'
 import R from 'ramda'
 
+let uid = 1
 const items = itemData.map(item => ({
     ...item,
     hidden: false,
     comment: null,
     approved: false,
     departments: [],
-    title: item.title || item.url
+    title: item.gegenstand || item.url,
+    uid: uid++,
 }))
 
 export default {
@@ -26,7 +28,7 @@ export default {
             return this.items.filter(item => item.hidden !== true)
         },
         filteredItems() {
-            return this.visibleItems.filter(item => this.matchTitle(this.query, item) || this.matchTag(this.query, item))
+            return this.visibleItems.filter(item => this.matchTitle(this.query, item) || this.matchId(this.query, item) || this.matchTag(this.query, item))
         },
         areas() {
             return this.areaData.map(area => {
@@ -40,6 +42,9 @@ export default {
     methods: {
         matchTitle(query, item) {
             return item.title.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1
+        },
+        matchId(query, item) {
+            return item.id.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1
         },
         matchTag(query, item) {
             return item.tags.filter(tag => tag.toLowerCase().indexOf(query.trim().toLowerCase()) !== -1).length > 0

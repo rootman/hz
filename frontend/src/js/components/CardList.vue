@@ -1,6 +1,6 @@
 <template>
     <transition-group tag="ul" class="card-list" name="list-transition">
-        <li class="card-list__item" v-for="item in items" :key="item.title">
+        <li class="card-list__item" v-for="item in items" :key="item.uid">
             <div class="card" :class="{'card--approved': item.approved}">
                 <div class="card__header">
                     <div class="card__departments">
@@ -19,12 +19,13 @@
                 </div>
                 <div class="card__body">
                     <div class="card__content">
-                        {{item.title}}
+                        <h3>{{item.title}}</h3>
+                        {{item.id}}
                     </div>
                     <div class="card__tags">
                         <ul class="tag-list">
                             <li class="tag-list__item" v-for="tag in item.tags">
-                                <div class="tag">{{tag}}</div>
+                                <div class="tag" :class="{'tag--active': tags.indexOf(tag) !== -1}">{{tag}}</div>
                             </li>
                         </ul>
                     </div>
