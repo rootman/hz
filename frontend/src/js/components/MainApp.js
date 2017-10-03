@@ -36,7 +36,7 @@ export default {
                     ...area,
                     items: this.visibleItems.filter(item => this.matchTags(area.tags, item.tags))
                 }
-            })
+            }).sort((a,b) => a.name > b.name)
         }
     },
     methods: {

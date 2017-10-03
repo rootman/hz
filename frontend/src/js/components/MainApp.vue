@@ -32,6 +32,8 @@
 
         <div class="section section--dark">
             <div class="container">
+                <h1>Personalisierte Entscheide</h1>
+
                 <div class="grid">
                     <div class="grid__item" v-for="area in areas">
                         <h2>{{area.name}}</h2>
