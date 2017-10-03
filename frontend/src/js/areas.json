@@ -40,7 +40,6 @@
       "Nutzen und Gefahr",
       "Vorbehalt",
       "kantonale Gesetzgebung",
-      "Gegenstand",
       "Farniskauf",
       "Verpflichtungen des Verkäufers",
       "Übergabe",
@@ -54,7 +53,6 @@
       "Verpflichtung zur Gewährleistung",
       "Rechtsgewährleistung",
       "Rechtsmangel",
-      "Verfahren",
       "Streitverkündung",
       "Ansprüche des Käufers",
       "vollständige Entwehrung",
@@ -82,9 +80,7 @@
       "Art. 370 OR",
       "Art. 371 OR",
       "Werkvertrag",
-      "Wirkungen",
       "Pflichten des Unternehmers",
-      "Allgemeines",
       "Betreffend den Stoff",
       "Stoff",
       "Werkstoff",
@@ -222,5 +218,9 @@
       "Abrechnung",
       "Gratifikation"
     ]
+  },
+  {
+    "name": "Erbrecht",
+    "tags": []
   }
 ]

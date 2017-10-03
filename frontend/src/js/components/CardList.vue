@@ -20,7 +20,8 @@
                 <div class="card__body">
                     <div class="card__content">
                         <h3>{{item.title}}</h3>
-                        {{item.id}}
+                        {{item.id}}<br>
+                        {{item.date}}
                     </div>
                     <div class="card__tags">
                         <ul class="tag-list">
