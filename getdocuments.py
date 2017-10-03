@@ -75,8 +75,6 @@ def get_tags_for_articles( articleList, tagDict ):
 
     for article in articleList:
 
-        print('.')
-
         sub_article = article
 
         pattern1 = r"\ Abs\.\ \d+\ "
@@ -162,7 +160,14 @@ def get_id( parsed_html ):
             ids.append(candidate)
 
     #print ids[0]
-    return ids[0]
+    result = "N/A"
+    try:
+        result = ids[0].strip()
+
+    except:
+        pass
+
+    return result
 
 
 def get_gegenstand( parsed_html ):
